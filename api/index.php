@@ -1,6 +1,7 @@
 <?php
+
 require 'vendor/autoload.php';
-require 'database/ConnectionFactory.php';
+require '../database/ConnectionFactory.php';
 require 'Service/service.php';
 
 $app = new \Slim\Slim();
@@ -31,11 +32,11 @@ $app->post('/guest', function () use ( $app ) {
 	echo json_encode($guest);
 });
 
-$app->delete('/guest/:nome', function($nome) use ( $app ) { 
+$app->delete('/guest/:id', function($id) use ( $app ) { 
 	$db = ConnectionFactory::getDB();
 	$response = "";
 	
-	$guest = $db->guests()->where('nome', $nome);
+	$guest = $db->guests()->where('id', $id);
 	
 	if($guest->fetch()) {
 		$result = $guest->delete();

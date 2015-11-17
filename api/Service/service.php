@@ -1,7 +1,7 @@
 <?php
 class Service {
       public static function listGuest() {
-        $db = ConectionFactory::getDB();
+        $db = ConnectionFactory::getDB();
         $guest = array();
         
         foreach($db->guests() as $guest) {
