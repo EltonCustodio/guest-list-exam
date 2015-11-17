@@ -1,35 +1,35 @@
 <?php
 class Service {
-      public static function listTasks() {
+      public static function listGuest() {
         $db = ConectionFactory::getDB();
-        $tasks = array();
+        $guest = array();
         
-        foreach($db->tasks() as $task) {
-           $tasks[] = array (
-               'id' => $task['id'],
-               'nome' => $task['nome'],
-               'email' => $task['email']
+        foreach($db->guests() as $guest) {
+           $guest[] = array (
+               'id' => $guest['id'],
+               'nome' => $guest['nome'],
+               'email' => $guest['email']
            ); 
         }
         
-        return $tasks;
+        return $guest;
     }
 
 
-       public static function add($newTask) {
+       public static function add($newGuest) {
          $db = ConnectionFactory::getDB();
-         $task = $db->tasks->insert($newTask);
+         $guest = $db->guests->insert($newGuest);
         
-         return $task;
+         return $guest;
     }
     
-    public static function update($updatedTask) {
+    public static function update($updatedGuest) {
         $db = ConnectionFactory::getDB();
-        $task = $db->tasks[$updatedTask['id']];
+        $guest = $db->guests[$updatedGuest['id']];
         
-        if($task) {
-            $task['description'] = $updatedTask['description'];
-            $task['done'] = $updatedTask['done'];
+        if($guest) {
+            $guest['nome'] = $updatedGuest['nome'];
+            $guest['email'] = $updatedGuest['email'];
             return true;
         }
         
